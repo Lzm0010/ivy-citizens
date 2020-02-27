@@ -1,0 +1,7 @@
+<h2><%= @product.name %></h2>
+
+<p>SKU: <%= @product.sku %></p>
+<p>Inventory Amount: <%= @product.amount %></p>
+<p>Cost: <%= number_to_currency(@product.cost) %></p>
+<p>Price: <%= number_to_currency(@product.price)%></p>
+

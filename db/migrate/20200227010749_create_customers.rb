@@ -3,8 +3,8 @@ class CreateCustomers < ActiveRecord::Migration[6.0]
     create_table :customers do |t|
       t.string :name
       t.string :email
-      t.decimal :royalty
-      t.decimal :wholesale_margin
+      t.decimal :royalty, :precision => 2
+      t.decimal :wholesale_margin,  :precision => 2
 
       t.timestamps
     end

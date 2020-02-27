@@ -15,28 +15,28 @@ ActiveRecord::Schema.define(version: 2020_02_27_010749) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.decimal "royalty"
-    t.decimal "wholesale_margin"
+    t.decimal "royalty", precision: 2
+    t.decimal "wholesale_margin", precision: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "product_id_id", null: false
-    t.integer "order_id_id", null: false
+    t.integer "product_id", null: false
+    t.integer "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id_id"], name: "index_line_items_on_order_id_id"
-    t.index ["product_id_id"], name: "index_line_items_on_product_id_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "delivery_date"
     t.string "status"
-    t.integer "customer_id_id", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id_id"], name: "index_orders_on_customer_id_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_010749) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "line_items", "order_ids"
-  add_foreign_key "line_items", "product_ids"
-  add_foreign_key "orders", "customer_ids"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "products"
+  add_foreign_key "orders", "customers"
 end

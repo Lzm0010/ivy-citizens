@@ -1,6 +1,28 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
+require 'csv'
+
+
+csv_text = File.open('db/products.csv', "r:ISO-8859-1")
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
+    name = row[0] + " " + row[3] + " " + row[2]
+    sku = row[1] + "-" + row[3] + "-" + row[2]
+    size = row[2]
+    color = row[3]
+    amount = row[4]
+    # image = row[5]
+    cost = row[6]
+    price = row[7]
+    Product.create(name:name,
+                   sku:sku,
+                   size:size,
+                   color:color,
+                   amount:amount,
+                   cost:cost,
+                   price:price
+    )
+end
+
+###SEED CUSTOMERS
 
 customers = [
     {

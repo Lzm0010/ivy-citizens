@@ -7,8 +7,8 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :color
       t.integer :amount
       t.string :image
-      t.float :cost
-      t.float :price
+      t.float :cost, :precision => 2
+      t.float :price, :precision => 2
 
       t.timestamps
     end
