@@ -1,18 +1,21 @@
 <h1>Products</h1>
 
 <%= form_for_filterrific @filterrific do |f| %>
-    <div>
-        Search
-        <%= f.text_field :search_query, class: 'filterrific-periodically-observed' %>
-    </div>
-    <div>
-        Sorted by
-        <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
-    </div>
-    <div>
-        <%= link_to  "Reset filters", reset_filterrific_url %>
-    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            Search
+            <%= f.text_field :search_query, class: 'filterrific-periodically-observed form-control' %>
+        </div>
+        <div class="form-group col-sm-4">
+            Sort by
+            <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], {} ,{class: "form-control"} ) %>
+        </div>
+        <div class="form-group col-sm-4">
+            Reset Search Filters
+            <%= link_to  "Reset filters", reset_filterrific_url, class: 'btn btn-outline-success form-control'%>
+        </div>
     <%= render_filterrific_spinner %>
+    </div>
 <% end %>
 
 <%= render(

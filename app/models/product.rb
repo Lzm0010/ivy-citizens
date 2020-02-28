@@ -17,11 +17,9 @@ class Product < ApplicationRecord
         terms = query.downcase.split(/\s+/)
         # replace "*" with "%" for wildcard searches,
         # append '%', remove duplicate '%'s
-        puts "First terms: #{terms}"
         terms = terms.map { |e|
         (e.gsub('*', '%') + '%').gsub(/%+/, '%')
         }
-        puts "Second terms; #{terms}"
         # configure number of OR conditions for provision
         # of interpolation arguments. Adjust this if you
         # change the number of OR conditions.
